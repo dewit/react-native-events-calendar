@@ -39,7 +39,7 @@ export default class EventCalendar extends React.Component {
     const date = moment(this.props.initDate).add(index - this.props.size, 'days')
     return _.filter(events, event => {
       const eventStartTime = moment(event.start)
-      return eventStartTime >= date.clone().startOf('day') &&
+      return eventStartTime >= date.clone().startOf('day') && 
         eventStartTime <= date.clone().endOf('day')
     })
   }
@@ -83,7 +83,7 @@ export default class EventCalendar extends React.Component {
     } = this.props
     return (
       <View style={[this.styles.container, { width }]}>
-        <View style={this.styles.header}>
+        {/* <View style={this.styles.header}>
           <TouchableOpacity onPress={() => this._goToPage(this.state.index - 1)}>
             <Image source={require('./back.png')} style={this.styles.arrow} />
           </TouchableOpacity>
@@ -91,7 +91,7 @@ export default class EventCalendar extends React.Component {
           <TouchableOpacity onPress={() => this._goToPage(this.state.index + 1)}>
             <Image source={require('./forward.png')} style={this.styles.arrow} />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <VirtualizedList
           ref='calendar'
           windowSize={2}

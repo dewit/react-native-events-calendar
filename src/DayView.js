@@ -10,7 +10,7 @@ import React from 'react'
 import moment from 'moment'
 import _ from 'lodash'
 
-const LEFT_MARGIN = 60 - 1
+const LEFT_MARGIN = 48 - 1
 // const RIGHT_MARGIN = 10
 const CALENDER_HEIGHT = 2400
 // const EVENT_TITLE_HEIGHT = 15
@@ -62,14 +62,14 @@ export default class DayView extends React.PureComponent {
       let timeText
       if (i === 0) {
         timeText = ``
-      } else if (i < 12) {
-        timeText = !format24h ? `${i} AM` : i
-      } else if (i === 12) {
-        timeText = !format24h ? `${i} PM` : i
+      } else if (i < 10) {
+        timeText = '0' + i + ':00'
+      } else if (i === 12 || i === 10 || i === 11) {
+        timeText = i + ':00'
       } else if (i === 24) {
-        timeText = !format24h ? `12 AM` : 0
+        timeText = '00:00'
       } else {
-        timeText = !format24h ? `${i - 12} PM` : i
+        timeText = i + ':00'
       }
       const { width, styles } = this.props
       return [
@@ -133,14 +133,6 @@ export default class DayView extends React.PureComponent {
               onPress={() => this._onEventTapped(this.props.events[event.index])}
             >
               <Text numberOfLines={1} style={styles.eventTitle}>{event.title || 'Event'}</Text>
-              {numberOfLines > 1
-                ? <Text
-                  numberOfLines={numberOfLines - 1}
-                  style={[styles.eventSummary]}
-                >
-                  {event.summary || ' '}
-                </Text>
-                : null}
               {numberOfLines > 2
                 ? <Text style={styles.eventTimes} numberOfLines={1}>{moment(event.start).format(formatTime)} - {moment(event.end).format(formatTime)}</Text>
                 : null}

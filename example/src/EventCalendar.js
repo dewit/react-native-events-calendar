@@ -83,7 +83,7 @@ export default class EventCalendar extends React.Component {
     } = this.props
     return (
       <View style={[this.styles.container, { width }]}>
-        <View style={this.styles.header}>
+        {/* <View style={this.styles.header}>
           <TouchableOpacity onPress={() => this._goToPage(this.state.index - 1)}>
             <Image source={require('./back.png')} style={this.styles.arrow} />
           </TouchableOpacity>
@@ -91,7 +91,7 @@ export default class EventCalendar extends React.Component {
           <TouchableOpacity onPress={() => this._goToPage(this.state.index + 1)}>
             <Image source={require('./forward.png')} style={this.styles.arrow} />
           </TouchableOpacity>
-        </View>
+        </View> */}
         <VirtualizedList
           ref='calendar'
           windowSize={2}
@@ -105,7 +105,7 @@ export default class EventCalendar extends React.Component {
           horizontal
           pagingEnabled
           renderItem={this._renderItem.bind(this)}
-          style={{ width: width }}          
+          style={{ width: width }}
           onMomentumScrollEnd={(event) => {
             const index = parseInt(event.nativeEvent.contentOffset.x / width)
             const date = moment(this.props.initDate).add(index - this.props.size, 'days')

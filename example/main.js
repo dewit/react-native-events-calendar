@@ -39,6 +39,7 @@ export default class App extends React.Component {
           eventTapped={this._eventTapped.bind(this)}
           events={this.state.events}
           width={width}
+          format24h={24}
           numberOfDay={60}
           initDate={'2017-09-07'}
           scrollToFirst
