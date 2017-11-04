@@ -1,7 +1,5 @@
 # React Native Event Calendar
-A React Native iOS style calendar implemented using VirtualizedList.
-This package is forked of https://github.com/joshyhargreaves/react-native-event-calendar
-allow run without expo and improve somethings
+Forked from https://github.com/duyluonglc/react-native-events-calendar
 
 ## Demo
 <img src="https://raw.githubusercontent.com/duyluonglc/react-native-events-calendar/master/demo/screenshot.png" width="360">
@@ -36,7 +34,7 @@ virtualizedListProps | PropTypes.object | prop pass to virtualizedList
 `npm i --save react-native-events-calendar`
 
 ## Examples
-See Examples dir. 
+See Examples dir.
 
 ```js
 import EventCalendar from 'react-native-events-calendar'
