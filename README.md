@@ -1,9 +1,6 @@
 # React Native Event Calendar
 Forked from https://github.com/duyluonglc/react-native-events-calendar
 
-## Demo
-<img src="https://raw.githubusercontent.com/duyluonglc/react-native-events-calendar/master/demo/screenshot.png" width="360">
-
 ## Current API
 Property | Type | Description
 ------------ | ------------- | -------------
