@@ -36,7 +36,7 @@ export default class EventCalendar extends React.Component {
   };
 
   _getItem(events, index) {
-    const date = moment(this.props.initDate).add(index - this.props.size, 'days')
+    const date = moment(this.props.initDate).add('days');
     return _.filter(events, event => {
       const eventStartTime = moment(event.start)
       return eventStartTime >= date.clone().startOf('day') && 
@@ -94,11 +94,9 @@ export default class EventCalendar extends React.Component {
         </View> */}
         <VirtualizedList
           ref='calendar'
-          windowSize={2}
-          initialNumToRender={2}
-          initialScrollIndex={this.props.size}
+          initialNumToRender={1}
           data={events}
-          getItemCount={() => this.props.size * 2}
+          getItemCount={() => 1}
           getItem={this._getItem.bind(this)}
           keyExtractor={(item, index) => index}
           getItemLayout={this._getItemLayout.bind(this)}

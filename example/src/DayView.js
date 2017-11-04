@@ -103,7 +103,7 @@ export default class DayView extends React.PureComponent {
     })
   }
 
-  _onEventTapped (event) {
+  _onEventTapped (event) {W
     this.props.eventTapped(event)
   };
 
