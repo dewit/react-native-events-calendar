@@ -1,4 +1,3 @@
-// @flow
 import {
   VirtualizedList,
   View,
@@ -20,7 +19,7 @@ export default class EventCalendar extends React.Component {
     this.styles = styleConstructor(props.styles)
     this.state = {
       date: moment(this.props.initDate),
-      index: this.props.size
+      index: 1
     }
   }
 
@@ -32,14 +31,14 @@ export default class EventCalendar extends React.Component {
 
   _getItemLayout(data, index) {
     const { width } = this.props
-    return { length: width, offset: width * index, index }
+    return { length: width, offset: 0, index }
   };
 
   _getItem(events, index) {
-    const date = moment(this.props.initDate).add('days');
+    const date = moment(this.props.initDate).add(index - this.props.size, 'days')
     return _.filter(events, event => {
       const eventStartTime = moment(event.start)
-      return eventStartTime >= date.clone().startOf('day') && 
+      return eventStartTime >= date.clone().startOf('day') &&
         eventStartTime <= date.clone().endOf('day')
     })
   }
@@ -51,6 +50,7 @@ export default class EventCalendar extends React.Component {
       <DayView
         date={date}
         index={index}
+        key={item.id}
         format24h={format24h}
         formatHeader={this.props.formatHeader}
         headerStyle={this.props.headerStyle}
@@ -68,8 +68,8 @@ export default class EventCalendar extends React.Component {
     if (index <= 0 || index >= this.props.size * 2) {
       return
     }
-    const date = moment(this.props.initDate).add(index - this.props.size, 'days')
-    this.refs.calendar.scrollToIndex({ index, animated: false })
+    const date = moment(this.props.initDate).add(index, 'days')
+    this.refs.calendar.scrollToIndex({ index, animated: true })
     this.setState({ index, date })
   }
 
@@ -83,20 +83,22 @@ export default class EventCalendar extends React.Component {
     } = this.props
     return (
       <View style={[this.styles.container, { width }]}>
-        {/* <View style={this.styles.header}>
+        <View style={this.styles.header}>
           <TouchableOpacity onPress={() => this._goToPage(this.state.index - 1)}>
             <Image source={require('./back.png')} style={this.styles.arrow} />
           </TouchableOpacity>
-          <Text style={this.styles.headerText}>{this.state.date.format(formatHeader || 'DD MMMM YYYY')}</Text>
+          <Text style={this.styles.headerText}>Pagina {this.state.index}</Text>
           <TouchableOpacity onPress={() => this._goToPage(this.state.index + 1)}>
             <Image source={require('./forward.png')} style={this.styles.arrow} />
           </TouchableOpacity>
-        </View> */}
+        </View>
         <VirtualizedList
           ref='calendar'
-          initialNumToRender={1}
+          windowSize={2}
+          initialNumToRender={2}
+          initialScrollIndex={this.props.size}
           data={events}
-          getItemCount={() => 1}
+          getItemCount={() => this.props.size * 2}
           getItem={this._getItem.bind(this)}
           keyExtractor={(item, index) => index}
           getItemLayout={this._getItemLayout.bind(this)}
