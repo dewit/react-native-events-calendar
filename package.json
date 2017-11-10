@@ -1,15 +1,14 @@
 {
-  "name": "react-native-events-calendar",
+  "name": "react-native-hanze-calendar",
   "version": "1.0.9",
   "description": "show calendar events by date",
   "main": "./src/EventCalendar.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/duyluonglc/react-native-events-calendar.git"
+    "url": "git+https://github.com/dewit/react-native-hanze-calendar.git"
   },
   "keywords": [
     "react-native",
@@ -29,7 +28,7 @@
   "author": "Duy Luong",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/duyluonglc/react-native-events-calendar/issues"
+    "url": "https://github.com/dewit/react-native-hanze-calendar.git#issues"
   },
-  "homepage": "https://github.com/duyluonglc/react-native-events-calendar#readme"
+  "homepage": "https://github.com/dewit/react-native-hanze-calendar.git#readme"
 }
