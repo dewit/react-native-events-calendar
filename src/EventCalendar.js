@@ -19,7 +19,7 @@ export default class EventCalendar extends React.Component {
     this.styles = styleConstructor(props.styles)
     this.state = {
       date: moment(this.props.initDate),
-      index: 1
+      index: 0
     }
   }
 
@@ -31,7 +31,7 @@ export default class EventCalendar extends React.Component {
 
   _getItemLayout(data, index) {
     const { width } = this.props
-    return { length: width, offset: 0, index }
+    return { length: width, offset: width * index, index }
   };
 
   _getItem(events, index) {
@@ -68,7 +68,7 @@ export default class EventCalendar extends React.Component {
     if (index <= 0 || index >= this.props.size * 2) {
       return
     }
-    const date = moment(this.props.initDate).add(index, 'days')
+    const date = moment(this.props.initDate).add(index - this.props.size, 'days')
     this.refs.calendar.scrollToIndex({ index, animated: true })
     this.setState({ index, date })
   }
@@ -87,7 +87,7 @@ export default class EventCalendar extends React.Component {
           <TouchableOpacity onPress={() => this._goToPage(this.state.index - 1)}>
             <Image source={require('./back.png')} style={this.styles.arrow} />
           </TouchableOpacity>
-          <Text style={this.styles.headerText}>Pagina {this.state.index}</Text>
+          <Text style={this.styles.headerText}>Pagina {this.state.index + 1}</Text>
           <TouchableOpacity onPress={() => this._goToPage(this.state.index + 1)}>
             <Image source={require('./forward.png')} style={this.styles.arrow} />
           </TouchableOpacity>
@@ -96,7 +96,7 @@ export default class EventCalendar extends React.Component {
           ref='calendar'
           windowSize={2}
           initialNumToRender={2}
-          initialScrollIndex={this.props.size}
+          initialScrollIndex={this.state.index}
           data={events}
           getItemCount={() => this.props.size * 2}
           getItem={this._getItem.bind(this)}
