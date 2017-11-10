@@ -37,7 +37,7 @@ export default class EventCalendar extends React.Component {
   _getItem(events, index) {
     const date = moment(this.props.initDate).add(index - this.props.size, 'days')
     return _.filter(events, event => {
-      const eventStartTime = moment(event.start)
+      const eventStartTime = moment(event.event_start_time)
       return eventStartTime >= date.clone().startOf('day') &&
         eventStartTime <= date.clone().endOf('day')
     })
@@ -65,7 +65,7 @@ export default class EventCalendar extends React.Component {
   }
 
   _goToPage(index) {
-    if (index <= 0 || index >= this.props.size * 2) {
+    if (index < 0 || index >= this.props.size * 2) {
       return
     }
     const date = moment(this.props.initDate).add(index - this.props.size, 'days')
@@ -106,6 +106,7 @@ export default class EventCalendar extends React.Component {
           pagingEnabled
           renderItem={this._renderItem.bind(this)}
           style={{ width: width }}
+          stickySectionHeadersEnabled={true}
           onMomentumScrollEnd={(event) => {
             const index = parseInt(event.nativeEvent.contentOffset.x / width)
             const date = moment(this.props.initDate).add(index - this.props.size, 'days')

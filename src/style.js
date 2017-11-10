@@ -10,7 +10,6 @@ export default function styleConstructor (
 ) {
   let style = {
     container: {
-      flex: 1,
       backgroundColor: '#ffff',
       ...theme.container
     },
@@ -19,6 +18,11 @@ export default function styleConstructor (
       height: calendarHeight + 10
     },
     header: {
+      zIndex: 999,
+      width: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
       paddingHorizontal: 30,
       height: 50,
       borderTopWidth: 1,
@@ -57,7 +61,7 @@ export default function styleConstructor (
     eventTitle: {
       color: 'white',
       fontWeight: '600',
-      minHeight: 15,
+      minHeight: 13,
       ...theme.eventTitle
     },
     eventSummary: {

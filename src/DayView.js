@@ -146,6 +146,7 @@ export default class DayView extends React.PureComponent {
             this.props.renderEvent(event)
           ) : (
             <TouchableOpacity
+              style={{ height: '100%' }}
               activeOpacity={0.5}
               onPress={() =>
                 this._onEventTapped(this.props.events[event.index])}
@@ -154,17 +155,9 @@ export default class DayView extends React.PureComponent {
                 {event.title || "Event"}
               </Text>
               {numberOfLines > 1 ? (
-                <Text
-                  numberOfLines={numberOfLines - 1}
-                  style={[styles.eventSummary]}
-                >
-                  {event.summary || " "}
-                </Text>
-              ) : null}
-              {numberOfLines > 2 ? (
                 <Text style={styles.eventTimes} numberOfLines={1}>
-                  {moment(event.start).format(formatTime)} -{" "}
-                  {moment(event.end).format(formatTime)}
+                  {moment(event.event_start_time).format(formatTime)} -{" "}
+                  {moment(event.event_end_time).format(formatTime)}
                 </Text>
               ) : null}
             </TouchableOpacity>

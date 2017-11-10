@@ -4,8 +4,8 @@ const CALENDER_HEIGHT = 2400
 const offset = CALENDER_HEIGHT / 24
 
 function buildEvent (column, left, width) {
-  const startTime = moment(column.start)
-  const endTime = column.end ? moment(column.end) : startTime.clone().add(1, 'hour')
+  const startTime = moment(column.event_start_time)
+  const endTime = column.event_end_time ? moment(column.event_end_time) : startTime.clone().add(1, 'hour')
   const diffHours = startTime.diff(startTime.clone().startOf('day'), 'hours', true)
 
   column.top = diffHours * offset
@@ -16,7 +16,7 @@ function buildEvent (column, left, width) {
 }
 
 function collision (a, b) {
-  return a.end > b.start && a.start < b.end
+  return a.event_end_time > b.event_start_time && a.event_start_time < b.event_end_time
 }
 
 function expand (ev, column, columns) {
@@ -60,10 +60,10 @@ function populateEvents (events, screenWidth) {
   events = events
     .map((ev, index) => ({ ...ev, index: index }))
     .sort(function (a, b) {
-      if (a.start < b.start) return -1
-      if (a.start > b.start) return 1
-      if (a.end < b.end) return -1
-      if (a.end > b.end) return 1
+      if (a.event_start_time < b.event_start_time) return -1
+      if (a.event_start_time > b.event_start_time) return 1
+      if (a.event_end_time < b.event_end_time) return -1
+      if (a.event_end_time > b.event_end_time) return 1
       return 0
     })
 
@@ -91,8 +91,8 @@ function populateEvents (events, screenWidth) {
       columns.push([ev])
     }
 
-    if (lastEnd === null || ev.end > lastEnd) {
-      lastEnd = ev.end
+    if (lastEnd === null || ev.event_end_time > lastEnd) {
+      lastEnd = ev.event_end_time
     }
   })
 
