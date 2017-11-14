@@ -23,7 +23,6 @@ export default function styleConstructor (
       position: 'absolute',
       top: 0,
       left: 0,
-      paddingHorizontal: 30,
       height: 50,
       borderTopWidth: 1,
       borderBottomWidth: 1,
@@ -40,14 +39,12 @@ export default function styleConstructor (
     arrow: {
       width: 15,
       height: 15,
+
       resizeMode: 'contain'
     },
     event: {
       position: 'absolute',
       backgroundColor: '#EE7B00',
-      opacity: 0.8,
-      borderColor: '#ee6800',
-      borderWidth: 1,
       paddingLeft: 4,
       minHeight: 25,
       flex: 1,
@@ -55,7 +52,12 @@ export default function styleConstructor (
       paddingBottom: 0,
       flexDirection: 'column',
       alignItems: 'flex-start',
-      overflow: 'hidden',
+      shadowColor: '#000',
+      shadowOpacity: 0.3,
+      shadowOffset: {width: 0, height: 3},
+      shadowRadius: 3,
+      elevation: 3,
+      borderRadius: 2,
       ...theme.event
     },
     eventTitle: {

@@ -1,6 +1,6 @@
 {
   "name": "react-native-hanze-calendar",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "show calendar events by date",
   "main": "./src/EventCalendar.js",
   "scripts": {
